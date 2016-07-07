@@ -6,11 +6,12 @@ organization := "net.jcazevedo"
 
 version := "0.3-SNAPSHOT"
 
-scalaVersion := "2.11.7"
+val scalaVersionString = "2.10.6"
+scalaVersion := scalaVersionString
 
 libraryDependencies ++= Seq(
   "com.github.nscala-time" %% "nscala-time"   % "2.2.0",
-  "org.scala-lang"          % "scala-reflect" % "2.11.7",
+  "org.scala-lang"          % "scala-reflect" % scalaVersionString,
   "org.yaml"                % "snakeyaml"     % "1.16",
   "org.specs2"             %% "specs2-core"   % "3.6.5"  % "test")
 
