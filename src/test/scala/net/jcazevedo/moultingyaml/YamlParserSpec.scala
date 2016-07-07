@@ -154,7 +154,7 @@ class YamlParserSpec extends Specification {
         yaml mustEqual YamlString(
           """\//||\/||
             |// ||  ||__
-            |""".stripMargin)
+            |""".stripMargin.replaceAll("\r\n", "\n"))
       }
 
     "correctly replace newlines by spaces in plain scalar" !
@@ -172,7 +172,7 @@ class YamlParserSpec extends Specification {
             |  0.288 Batting Average
             |
             |What a year!
-            |""".stripMargin)
+            |""".stripMargin.replaceAll("\r\n", "\n"))
       }
 
     "correctly determine scope by indentation" !

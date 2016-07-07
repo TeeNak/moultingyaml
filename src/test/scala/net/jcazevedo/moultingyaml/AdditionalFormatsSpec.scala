@@ -57,7 +57,7 @@ class AdditionalFormatsSpec extends Specification {
         |  - 1
         |  - 2
         |  - 3
-        |""".stripMargin
+        |""".stripMargin.replaceAll("\r\n", "\n")
 
     import WriterProtocol._
 
@@ -96,7 +96,7 @@ class AdditionalFormatsSpec extends Specification {
                    |    name: c
                    |- id: 4
                    |  name: d
-                   |""".stripMargin
+                   |""".stripMargin.replaceAll("\r\n", "\n")
 
       import FooProtocol._
       obj.toYaml.prettyPrint mustEqual yaml

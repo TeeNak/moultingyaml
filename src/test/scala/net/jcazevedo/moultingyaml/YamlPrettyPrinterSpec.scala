@@ -14,7 +14,7 @@ class YamlPrettyPrinterSpec extends Specification {
         """- Mark McGwire
           |- Sammy Sosa
           |- Ken Griffey
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print yaml objects" in {
@@ -27,7 +27,7 @@ class YamlPrettyPrinterSpec extends Specification {
         """hr: 65
           |avg: 0.278
           |rbi: 147
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print yaml objects with sequences on it" in {
@@ -50,7 +50,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |- New York Mets
           |- Chicago Cubs
           |- Atlanta Braves
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print sequences of mappings" in {
@@ -71,7 +71,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |- name: Sammy Sosa
           |  hr: 63
           |  avg: 0.288
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print sequences of sequences" in {
@@ -99,7 +99,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |- - Sammy Sosa
           |  - 63
           |  - 0.288
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print mappings of mappings" in {
@@ -118,7 +118,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |Sammy Sosa:
           |  hr: 63
           |  avg: 0.288
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print mappings between sequences" in {
@@ -145,20 +145,20 @@ class YamlPrettyPrinterSpec extends Specification {
           |: - '2001-07-02'
           |  - '2001-08-12'
           |  - '2001-08-14'
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print strings with newlines" in {
       val yaml1 = YamlString(
         """\//||\/||
           |// ||  ||__
-          |""".stripMargin)
+          |""".stripMargin.replaceAll("\r\n", "\n"))
 
       yaml1.prettyPrint mustEqual
         """||
           |  \//||\/||
           |  // ||  ||__
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
 
       val yaml2 = YamlString(
         """Sammy Sosa completed another fine season with great stats.
@@ -167,7 +167,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |  0.288 Batting Average
           |
           |What a year!
-          |""".stripMargin)
+          |""".stripMargin.replaceAll("\r\n", "\n"))
 
       yaml2.prettyPrint mustEqual
         """||
@@ -177,7 +177,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |    0.288 Batting Average
           |
           |  What a year!
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print numbers" in {
@@ -196,7 +196,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |float: 0.4555
           |long_canonical: 21474836470
           |bigint_canonical: 92233720368547758070
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print miscellaneous scalars" in {
@@ -215,7 +215,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |true: y
           |false: n
           |string: '12345'
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "pretty print explicit sets" in {
@@ -229,7 +229,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |Mark McGwire: null
           |Sammy Sosa: null
           |Ken Griff: null
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "print according to a provided configuration" in {
@@ -248,7 +248,7 @@ class YamlPrettyPrinterSpec extends Specification {
           |"float": !!float "0.4555"
           |"long_canonical": !!int "21474836470"
           |"bigint_canonical": !!int "92233720368547758070"
-          |""".stripMargin
+          |""".stripMargin.replaceAll("\r\n", "\n")
     }
 
     "print with custom scalar style" in {
@@ -263,7 +263,7 @@ class YamlPrettyPrinterSpec extends Specification {
           YamlNumber(BigInt("92233720368547758070")))
 
       yaml.print(scalarStyle = DoubleQuoted) mustEqual
-      yaml.print(scalarStyle = ScalarStyle.createStyle('"'))
+        yaml.print(scalarStyle = ScalarStyle.createStyle('"'))
     }
 
     "print with default configuration" in {

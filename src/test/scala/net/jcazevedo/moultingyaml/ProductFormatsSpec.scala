@@ -194,7 +194,7 @@ class ProductFormatsSpec extends Specification {
         |foo-bar!: 42
         |-x-: 26
         |User ID: Karl
-        |""".stripMargin
+        |""".stripMargin.replaceAll("\r\n", "\n")
 
     "produce the correct YAML" in {
       TestMangled(42, "Karl", true, 26, 1.0f).toYaml.prettyPrint === yaml
